@@ -1,15 +1,17 @@
+'use client';
 import React from 'react';
 import SideMenu from '../../components/mypage/SideMenu';
-import styles from '../mypage.module.scss';
+import S from '../mypage.module.scss';
+import Footer from '../../components/@shared/footer/Footer';
 
-const ReservationHistory: React.FC = () => {
+function ReservationHistory() {
   return (
-    <div className={styles['reservationhistory']}>
-      <div className={styles['side-menu-container']}>
+    <div className={S.reservationhistory}>
+      <div className={S.sidemenuContainer}>
         <SideMenu />
       </div>
     </div>
   );
-};
+}
 
 export default ReservationHistory;

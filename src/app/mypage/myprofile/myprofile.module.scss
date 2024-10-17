@@ -1,0 +1,33 @@
+@use '@/styles/abstracts/core' as *;
+
+.myprofile {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $gray100;
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  gap: 20px;
+}
+
+.sideMenuContainer {
+  flex: 1;
+}
+
+.formContainer {
+  flex: 2;
+}
+
+.footer {
+  width: 100%;
+  padding: 20px 0;
+}

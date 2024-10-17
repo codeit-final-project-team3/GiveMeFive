@@ -1,0 +1,60 @@
+@use '@/styles/abstracts/core' as *;
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background-color: white;
+  width: 540px;
+  height: 250px;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  position: relative;
+}
+
+.modalMessage {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1em;
+}
+
+.modalButtons {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+}
+
+.modalButton {
+  width: 120px;
+  height: 48px;
+  padding: 14px 46px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  gap: 10px;
+}
+
+.modalButtonConfirm {
+  background-color: $nomadBlack;
+  color: white;
+}
+
+.modalButton:hover {
+  opacity: 0.8;
+}

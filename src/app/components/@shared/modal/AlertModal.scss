@@ -1,6 +1,6 @@
 @use '@/styles/abstracts/core' as *;
 
-.modal-overlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +13,7 @@
   z-index: 1000;
 }
 
-.modal-content {
+.modalContent {
   background-color: white;
   padding: 20px;
   border-radius: 8px;
@@ -22,24 +22,24 @@
   text-align: center;
 }
 
-.modal-message {
+.modalMessage {
   margin-top: 0;
   margin-bottom: 20px;
   font-size: 1em;
 }
 
-.modal-buttons {
+.modalButtons {
   display: flex;
   justify-content: center;
   margin-top: 10px;
   gap: 8px;
 }
 
-.modal-button {
+.modalButton {
   width: 80px;
   height: 38px;
   padding: 2px 8px;
-  border-radius: 6px 0px 0px 0px;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,25 +47,25 @@
   white-space: nowrap;
 }
 
-.modal-button.cancel {
+.modalButtonCancel {
   background: white;
   border: 1px solid $nomadBlack;
 }
 
-.modal-button.alert {
+.modalButtonAlert {
   background-color: $nomadBlack;
   color: white;
 }
 
-.modal-button:hover {
+.modalButton:hover {
   opacity: 0.8;
 }
 
-.modal-icon {
+.modalIcon {
   margin-bottom: 10px;
 }
 
-.icon-container {
+.iconContainer {
   position: relative;
   width: 24px;
   height: 24px;
@@ -73,7 +73,7 @@
   margin-bottom: 10px;
 }
 
-.modal-check-icon {
+.modalCheckIcon {
   position: absolute;
   top: 50%;
   left: 50%;

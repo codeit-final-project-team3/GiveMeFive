@@ -1,15 +1,16 @@
 import React from 'react';
 import SideMenu from '../../components/mypage/SideMenu';
-import styles from '../mypage.module.scss';
+import Footer from '../../components/@shared/footer/Footer';
+import S from '../mypage.module.scss';
 
-const MyExperiencemanagement: React.FC = () => {
+function MyExperiencemanagement() {
   return (
-    <div className={styles['myexperiencemanagemen']}>
-      <div className={styles['side-menu-container']}>
+    <div className={S.myexperiencemanagement}>
+      <div className={S.sideMenuContainer}>
         <SideMenu />
       </div>
     </div>
   );
-};
+}
 
 export default MyExperiencemanagement;

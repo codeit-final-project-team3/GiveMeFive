@@ -1,5 +1,5 @@
 import React from 'react';
-import './ConfirmModal.scss';
+import S from './ConfirmModal.module.scss';
 
 interface ConfirmModalProps {
   isOpen: boolean;
@@ -21,12 +21,12 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
   }
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <p className="modal-message">{message}</p>
-        <div className="modal-buttons">
+    <div className={S.modalOverlay}>
+      <div className={S.modalContent}>
+        <p className={S.modalMessage}>{message}</p>
+        <div className={S.modalButtons}>
           <button
-            className="modal-button confirm"
+            className={`${S.modalButton} ${S.modalButtonConfirm}`}
             onClick={() => {
               onConfirm();
               onClose();

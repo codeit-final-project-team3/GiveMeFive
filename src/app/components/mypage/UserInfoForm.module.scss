@@ -1,11 +1,16 @@
-.user-info-form {
-  max-width: 400px;
+@use '@/styles/abstracts/core' as *;
+
+.userInfoForm {
+  max-width: 792px;
   margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
   border-radius: 8px;
-  background-color: #f9f9f9;
+  background-color: $gray100;
   z-index: 1;
+  position: relative;
+}
+
+.title {
+  @include text3XlBold;
 }
 
 .form {
@@ -13,10 +18,21 @@
   flex-direction: column;
 }
 
+.buttonWrapper {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+}
+
 .input {
   margin-bottom: 1rem;
 }
 
-.submit-button {
-  margin-top: 1rem;
+.label {
+  @include text2XlBold;
+}
+
+.submitButton {
+  margin-top: 0;
 }
