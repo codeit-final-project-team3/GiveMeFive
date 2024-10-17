@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
-export async function middleware(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken');
   const { pathname } = request.nextUrl;
   const privateRoutes = ['/mypage'];

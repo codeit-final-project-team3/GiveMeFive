@@ -1,0 +1,46 @@
+@use '@/styles/abstracts/core' as *;
+
+.headerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: $headerHeight;
+  width: 100%;
+  border-bottom: 1px solid $gray300;
+  background-color: $white;
+}
+
+.headerContents {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 24px;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notLoggedInContainer {
+  display: flex;
+  gap: 25px;
+  @include textMdMedium;
+
+  a {
+    color: $black;
+    text-decoration: none;
+  }
+}
+
+@include mobile {
+  .headerLogo {
+    img {
+      @include mobile {
+        width: 140px;
+        height: auto;
+      }
+    }
+  }
+}

@@ -1,3 +1,4 @@
+@use '@/styles/abstracts/core' as *;
 @use 'reset.scss';
 
 * {
@@ -7,6 +8,7 @@
 body {
   height: 100%;
   min-height: 100dvh;
+  padding-top: $headerHeight;
 
   font-family:
     'Pretendard Variable',

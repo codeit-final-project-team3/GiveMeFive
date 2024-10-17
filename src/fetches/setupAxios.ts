@@ -54,7 +54,7 @@ axiosAuth.interceptors.response.use(
       // 재발급된 token으로 쿠키 업데이트
       const { accessToken: newAccessToken, refreshToken: newRefreshToken } = data;
       setCookie('accessToken', newAccessToken);
-      setCookie('newRefreshToken', newRefreshToken);
+      setCookie('refreshToken', newRefreshToken);
 
       // 401로 실패했던 요청을 새로운 accessToken으로 재요청
       originalRequest.headers.authorization = `Bearer ${newAccessToken}`;

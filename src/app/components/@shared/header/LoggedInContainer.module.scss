@@ -1,0 +1,46 @@
+@use '@/styles/abstracts/core' as *;
+
+.loggedInContainer {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+
+  .notification {
+    border: none;
+    background-color: transparent;
+  }
+
+  .verticalSeparator {
+    height: 22px;
+    width: 1px;
+    background-color: $gray300;
+  }
+
+  .profileContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    @include textMdMedium;
+
+    img {
+      border-radius: 50%;
+    }
+
+    .nickname {
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
+
+@include mobile {
+  .loggedInContainer {
+    gap: 12px;
+  }
+
+  .nickname {
+    width: 50px;
+  }
+}
