@@ -1,0 +1,92 @@
+@use '@/styles/abstracts/_core.scss' as *;
+
+.mainContainer {
+  max-width: 1200px;
+  margin: auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.experienceText {
+  @include text3XlBold;
+  color: $black;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: -60px;
+  padding: 32px 24px;
+  border-radius: 16px;
+  background-color: $white;
+  box-shadow: 0px 4px 16px 0px #1122110d;
+}
+
+.searchInput {
+  max-width: 1004px;
+}
+
+.inputText {
+  @include textXlBold;
+  color: $black;
+}
+
+.searchInputContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.buttonWidth {
+  width: 136px !important;
+  height: 56px !important;
+}
+
+.bestExperienceContainer {
+  display: flex;
+  justify-content: space-between;
+
+  margin-top: 35px;
+  margin-bottom: 32px;
+}
+
+.experienceTextContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.categoryContainer {
+  margin-top: 60px;
+}
+
+.allExperienceContainer {
+  margin-top: 35px;
+  margin-bottom: 32px;
+}
+
+.categoryDropdownContainer {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  margin-top: 60px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  .mantine-Pagination-control {
+    background-color: $black;
+  }
+}

@@ -1,4 +1,5 @@
 $fontSize: (
+  '4Xl': 68px,
   '3Xl': 32px,
   '2Xl': 24px,
   'Xl': 20px,
@@ -6,11 +7,12 @@ $fontSize: (
   'Lg': 16px,
   'Md': 14px,
   'Sm': 13px,
-  'Xs': 12px
+  'Xs': 12px,
 );
 
 // 줄 높이
 $lineHeight: (
+  '4Xl': 78px,
   '3Xl': 42px,
   '2Xl': 32px,
   'Xl': 32px,
@@ -18,7 +20,7 @@ $lineHeight: (
   'Lg': 26px,
   'Md': 24px,
   'Sm': 22px,
-  'Xs': 18px
+  'Xs': 18px,
 );
 
 // 폰트 굵기
@@ -26,6 +28,5 @@ $fontWeight: (
   'Bold': 700,
   'Semibold': 600,
   'Medium': 500,
-  'Regular': 400
+  'Regular': 400,
 );
-

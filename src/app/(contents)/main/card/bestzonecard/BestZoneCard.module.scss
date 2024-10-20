@@ -1,0 +1,54 @@
+@use '@/styles/abstracts/_core.scss' as *;
+
+.bestZoneCardContainer {
+  display: flex;
+  gap: 24px;
+}
+
+.bestZoneCardImage {
+  width: 384px;
+  height: 384px;
+  position: relative;
+
+  // 엑박일 경우 사진 크기 가늠할 수 있는 보더
+  border-radius: 20px;
+  border: 1px solid $gray300;
+  background-color: $gray900;
+}
+
+.bestZoneCardContent {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  padding-left: 20px;
+  padding-bottom: 30px;
+  color: $gray900;
+}
+
+.bestZoneCardRating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.bestZoneCardRatingText {
+  @include textMdSemibold;
+  color: $white;
+}
+
+.bestZoneCardTitle {
+  width: 251px;
+  @include text3XlBold;
+  color: $white;
+}
+
+.bestZoneCardPrice {
+  @include textLgBold;
+  color: $white;
+}
+
+.bestZoneCardPriceUnit {
+  @include textMdRegular;
+  color: $gray700;
+}

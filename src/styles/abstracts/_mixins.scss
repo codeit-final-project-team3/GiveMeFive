@@ -13,6 +13,12 @@
 }
 
 // font-style 관련 mixins
+@mixin text4XlBold {
+  font-size: map-get($fontSize, '4Xl');
+  line-height: map-get($lineHeight, '4Xl');
+  font-weight: map-get($fontWeight, 'Bold');
+}
+
 @mixin text3XlBold {
   font-size: map-get($fontSize, '3Xl');
   line-height: map-get($lineHeight, '3Xl');

@@ -1,0 +1,55 @@
+@use '@/styles/abstracts/_core.scss' as *;
+
+.allZoneCardContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.allZoneCardImage {
+  width: 283px;
+  height: 283px;
+  position: relative;
+
+  // 엑박일 경우 사진 크기 가늠할 수 있는 보더
+  border-radius: 20px;
+  border: 1px solid $gray300;
+}
+
+.allZoneCardContent {
+  position: relative;
+  margin-top: 15px;
+}
+
+.allZoneCardRating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  gap: 5px;
+
+  @include textLgMedium;
+
+  & .allZoneCardRatingText {
+    color: $black;
+  }
+
+  & .allZoneCardReviewCount {
+    color: $gray700;
+  }
+}
+
+.allZoneCardTitle {
+  margin-bottom: 5px;
+  @include text2LgSemibold;
+  color: $black;
+}
+
+.allZoneCardPrice {
+  @include text2LgBold;
+  color: $black;
+}
+
+.allZoneCardPriceUnit {
+  @include textLgRegular;
+  color: $gray900;
+}

@@ -1,0 +1,43 @@
+@use '@/styles/abstracts/_core.scss' as *;
+
+.bannerContainer {
+  width: 100%;
+  height: 550px;
+  position: relative;
+  //   background-color: $nomadBlack;
+}
+
+// .bannerImageWrapper {
+//   position: relative;
+// }
+
+.bannerImage {
+  position: absolute;
+  width: 100%;
+  object-fit: cover;
+}
+
+.bannerContentWrapper {
+  position: absolute;
+  max-width: 1200px;
+  top: 35%;
+  right: 50%;
+}
+
+.bannerContent {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.bannerTitle {
+  @include text4XlBold;
+  color: $white;
+}
+
+.bannerSubtitle {
+  @include text2XlBold;
+  color: $white;
+  //   margin-top: 20px;
+}

@@ -1,0 +1,11 @@
+@use '@/styles/abstracts/_core.scss' as *;
+
+.experienceArrowContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.arrowButton {
+  background-color: transparent;
+  border: none;
+}

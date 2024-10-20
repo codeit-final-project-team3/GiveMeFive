@@ -1,0 +1,30 @@
+@use '../../../../styles/abstracts/core.scss' as *;
+
+.paginationWrapper {
+  :global(.mantine-Pagination-control) {
+    background-color: white;
+    color: $green300;
+    @include text2Lg;
+    border: 1px solid $green300;
+    border-radius: 15px;
+
+    height: 55px;
+    width: 55px;
+
+    margin-top: 64px;
+    margin-bottom: 64px;
+
+    &:hover {
+      background-color: $white;
+    }
+
+    &[data-active] {
+      background-color: $green300;
+      color: $white;
+
+      &:hover {
+        background-color: $green300;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@use '@/styles/abstracts/_core.scss' as *;
+
+.categoryDropdownContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60px;
+}
+
+.categoryContainer {
+  display: flex;
+  gap: 24px;
+}
+
+.category {
+  width: 127px;
+  height: 58px;
+
+  text-align: center;
+  padding: 16px;
+  border-radius: 15px;
+  border: 1px solid $green300;
+  background-color: $white;
+  @include text2LgMedium;
+  color: $green300;
+
+  &.selected {
+    background-color: $green300;
+    color: $white;
+  }
+}
