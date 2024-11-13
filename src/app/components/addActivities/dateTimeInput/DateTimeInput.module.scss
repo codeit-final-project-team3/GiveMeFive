@@ -169,3 +169,64 @@
     margin: 0;
   }
 }
+
+// 아래로는 Mantine 설정
+.input {
+  width: 100%;
+  max-width: 380px;
+  height: 56px;
+  border: 1px solid $gray800;
+  cursor: pointer;
+
+  &:focus-within {
+    border: 1px solid #f0cb33;
+  }
+
+  .error {
+    border: 1px solid #ff472e;
+  }
+
+  &[data-selected] {
+    background-color: $giveMeNavy;
+    color: $white;
+  }
+
+  .root {
+    --input-bd-focus: yellow;
+  }
+}
+
+.day {
+  &[data-selected] {
+    background-color: $giveMeNavy;
+    color: $white;
+  }
+  &[data-today] {
+    border: 1px solid $gray900;
+  }
+}
+
+.timeInput {
+  width: 100%;
+  max-width: 140px;
+  height: 56px;
+  border: 1px solid $gray800;
+  cursor: pointer;
+
+  &:focus-within {
+    border: 1px solid #f0cb33;
+  }
+
+  .error {
+    border: 1px solid #ff472e;
+  }
+
+  &[data-selected] {
+    background-color: $giveMeNavy;
+    color: $white;
+  }
+
+  .root {
+    --input-bd-focus: yellow;
+  }
+}

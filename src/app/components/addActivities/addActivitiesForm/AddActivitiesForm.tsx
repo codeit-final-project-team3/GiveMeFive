@@ -8,6 +8,7 @@ import { useValidForm, ValidationConfig } from '@/hooks/useValidForm';
 import { SubmitActivitiesParams } from '@/types/addActivities';
 import { useRouter } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
+import { useToastStore } from '@/stores/useToastStore';
 import Button from '../../@shared/button/Button';
 import Input from '../../@shared/input/Input';
 import Dropdown from '../../@shared/dropdown/Dropdown';
@@ -31,6 +32,7 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
   const [isEditMode, setIsEditMode] = useState(false);
   const [loading, setLoading] = useState(false);
   const { data, onDropdownChange, toggleDropdown, isDropdownToggle, selectedValue } = useDropdown(CATEGORY);
+  const { addToast } = useToastStore(state => state.action);
   const config: ValidationConfig = {
     // 키값이 입력 필드의 name이 됩니다.
     title: {
@@ -111,6 +113,7 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
     try {
       await postActivities(typedData);
       router.replace('/mypage/myexperiencemanagement');
+      addToast({ type: 'success', message: '체험 등록 성공' });
     } catch (error: any) {
       if (error.response) {
         // 서버에서 보낸 응답이 있는 경우
@@ -152,6 +155,7 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
     try {
       await editActivities(typedData, activityId);
       router.replace('/mypage/myexperiencemanagement');
+      addToast({ type: 'success', message: '체험 수정 성공' });
     } catch (error: any) {
       if (error.response) {
         // 서버에서 보낸 응답이 있는 경우
@@ -234,6 +238,7 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
           message={errors.price?.message}
           type="number"
           className={S.priceInput}
+          onWheel={event => (event.target as HTMLElement).blur()}
         />
         <DaumAddress errors={errors} register={register} setValue={setValue} getValues={getValues} />
         <label className={S.dateTimeInputLabel} htmlFor="availableTime">

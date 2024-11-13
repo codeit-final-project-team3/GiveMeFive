@@ -63,7 +63,7 @@ export default function DateTimeInput({
     const formatData = selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') : '';
     setDateTime(prevState => ({
       ...prevState,
-      date: formatData, // string으로 포맷된 값 저장
+      date: formatData,
     }));
   };
 
@@ -156,15 +156,11 @@ export default function DateTimeInput({
             rightSectionPointerEvents="none"
             onChange={onDateSelectChange}
             value={dateTime.date ? dayjs(dateTime.date).toDate() : null}
-            styles={{
-              input: {
-                width: '100%',
-                maxWidth: '380px',
-                height: '56px',
-                border: error ? '1px solid #ff472e' : '',
-                cursor: 'pointer',
-              },
-              root: { borderColor: 'blue' },
+            minDate={new Date()}
+            classNames={{
+              input: `${S.input} ${error ? S.error : ''}`,
+              root: S.root,
+              day: S.day,
             }}
           />
         </div>
@@ -176,14 +172,9 @@ export default function DateTimeInput({
             rightSection={pickerControl(startRef)}
             value={dateTime.startTime}
             onChange={onStartTimeChange}
-            styles={{
-              input: {
-                width: '100%',
-                maxWidth: '140px',
-                height: '56px',
-                border: error ? '1px solid #ff472e' : '',
-              },
-              root: { borderColor: 'blue' },
+            classNames={{
+              input: `${S.timeInput} ${error ? S.error : ''}`,
+              root: S.root,
             }}
           />
         </div>
@@ -196,14 +187,9 @@ export default function DateTimeInput({
             rightSection={pickerControl(endRef)}
             value={dateTime.endTime}
             onChange={onEndTimeChange}
-            styles={{
-              input: {
-                width: '100%',
-                maxWidth: '140px',
-                height: '56px',
-                border: error ? '1px solid #ff472e' : '',
-              },
-              root: { borderColor: 'blue' },
+            classNames={{
+              input: `${S.timeInput} ${error ? S.error : ''}`,
+              root: S.root,
             }}
           />
         </div>
