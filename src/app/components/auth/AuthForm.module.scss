@@ -1,10 +1,44 @@
+@use '/src/styles/abstracts/core' as *;
+
 .authForm {
   display: flex;
   flex-direction: column;
   gap: 28px;
   padding: 56px 0 32px;
 
+  .testAccount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: $giveMeYellow;
+    color: $giveMeNavy;
+    padding: 10px;
+    border-radius: 20px;
+
+    h3 {
+      @include text2XlBold;
+    }
+
+    div {
+      @include textXlBold;
+      width: fit-content;
+      text-align: start;
+    }
+  }
+
   button {
     height: 48px;
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+
+    &.active {
+      background-color: $giveMeYellow;
+      color: $giveMeNavy;
+      cursor: pointer;
+    }
   }
 }

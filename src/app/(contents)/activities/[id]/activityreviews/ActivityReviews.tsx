@@ -10,7 +10,14 @@ import dayjs from 'dayjs';
 import { useState } from 'react';
 import { useUserStore } from '@/stores/useUserStore';
 
-export default function ActivityReviews({ params }: { params: { id: string } }) {
+interface ActivityReviewsProps {
+  params: {
+    id: string;
+  };
+  hasAvailableDates: boolean;
+}
+
+export default function ActivityReviews({ params, hasAvailableDates }: ActivityReviewsProps) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const activityId = Number(params.id);
@@ -21,15 +28,18 @@ export default function ActivityReviews({ params }: { params: { id: string } }) 
 
   const activity = activityQuery.data;
   const reviews = reviewsQuery.data;
+  const canShowReservation = !isCreator && hasAvailableDates;
 
-  const ITEMS_PER_PAGE = 3; // 페이지당 리뷰 개수 상수 추가
+  const ITEMS_PER_PAGE = 3;
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const endIndex = startIndex + ITEMS_PER_PAGE;
   const currentPageReviews = reviews?.reviews.slice(startIndex, endIndex);
 
   if (!reviewsQuery.data?.reviews || reviewsQuery.data?.reviews.length === 0) {
     return (
-      <div className={`${S.activityReviewAndPagination} ${isCreator ? S.fullWidth : ''}`}>
+      <div
+        className={`${S.activityReviewAndPagination} ${!isCreator && canShowReservation ? S.withCalendarWidth : ''}`}
+      >
         <div className={S.noReviewContainer}>
           <Image src={noReview} alt="" width={100} height={100} />
           <div>작성된 후기가 없습니다.</div>
@@ -39,8 +49,8 @@ export default function ActivityReviews({ params }: { params: { id: string } }) 
   }
 
   return (
-    <>
-      <div className={S.activityReviewAndPagination}>
+    <div className={S.activityReviews}>
+      <div className={`${S.activityReviewAndPagination} ${!canShowReservation && S.fullWidth}`}>
         <span className={S.activityReview}>후기</span>
 
         <div className={S.averageRatingAndSatisfaction}>
@@ -97,6 +107,6 @@ export default function ActivityReviews({ params }: { params: { id: string } }) 
           onChangePage={page => setCurrentPage(page)}
         />
       </div>
-    </>
+    </div>
   );
 }

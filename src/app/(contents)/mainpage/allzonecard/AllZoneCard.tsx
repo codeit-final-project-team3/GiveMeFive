@@ -54,7 +54,7 @@ export default function AllZoneCard({ initialActivitiesData }: { initialActiviti
   const totalItems = useMemo(() => activitiesData?.totalCount || 0, [activitiesData]);
 
   useEffect(() => {
-    router.replace(pathname);
+    router.replace(pathname, { scroll: false });
     setPage(1);
     setSelectedCategory(null);
     setSelectedSort(undefined);
@@ -75,12 +75,20 @@ export default function AllZoneCard({ initialActivitiesData }: { initialActiviti
       return;
     }
 
+    // 페이지 이동이나 검색이 아닌 새로고침인 경우 스크롤하지 않음
+    if (!title && page === 1 && !selectedCategory && !selectedSort) {
+      return;
+    }
+
     const timer = setTimeout(() => {
       titleRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
 
-    return () => clearTimeout(timer);
-  }, [selectedCategory, selectedSort, page]);
+    // eslint-disable-next-line consistent-return
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [selectedCategory, selectedSort, page, title]);
 
   const handleCategoryChange = (category: CategoryType | null) => {
     setSelectedCategory(category);

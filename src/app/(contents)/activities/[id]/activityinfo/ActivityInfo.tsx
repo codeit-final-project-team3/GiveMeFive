@@ -9,13 +9,16 @@ import Image from 'next/image';
 import Dropdown from '@/app/components/@shared/dropdown/Dropdown';
 import useDropdown from '@/hooks/useDropdown';
 import Map from './map';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useUserStore } from '@/stores/useUserStore';
 import ResponsiveReservation from '@/app/components/reservation/ResponsiveReservation';
 import Alert from '@/app/components/@shared/modal/AlertModal';
 import { useRouter } from 'next/navigation';
 import { useDetailActivitiesQuery } from '@/queries/useActivityInfoQuery';
 import { deleteMyActivity } from '@/fetches/myActivities';
+import copy from '@/images/copy-icon.png';
+import { useActivityStore } from '@/stores/useActivityStore';
+import { useToastStore } from '@/stores/useToastStore';
 
 interface ErrorResponse {
   response?: {
@@ -25,30 +28,46 @@ interface ErrorResponse {
   };
 }
 
-export default function ActivityInfo({ params }: { params: { id: string } }) {
+export default function ActivityInfo({
+  params,
+  hasAvailableDates,
+}: {
+  params: { id: string };
+  hasAvailableDates: boolean;
+}) {
   const activityId = Number(params.id);
   const { data: activity } = useDetailActivitiesQuery(activityId);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const {
+    currentImageIndex,
+    setCurrentImageIndex,
+    allImages,
+    setAllImages,
+    isAlertOpen,
+    setIsAlertOpen,
+    isErrorAlertOpen,
+    setIsErrorAlertOpen,
+    errorMessage,
+    setErrorMessage,
+  } = useActivityStore();
 
   const dropdownList = ['수정하기', '삭제하기'];
   const router = useRouter();
   const { toggleDropdown, isDropdownToggle } = useDropdown(dropdownList);
+  const { addToast } = useToastStore(state => state.action);
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isErrorAlertOpen, setIsErrorAlertOpen] = useState(false);
-
-  const allImages = [activity?.bannerImageUrl, ...(activity?.subImages?.map(img => img.imageUrl) || [])].filter(
-    Boolean,
-  );
+  useEffect(() => {
+    const images = [activity?.bannerImageUrl, ...(activity?.subImages?.map(img => img.imageUrl) || [])].filter(
+      Boolean,
+    ) as string[];
+    setAllImages(images);
+  }, [activity]);
 
   const nextImage = () => {
-    setCurrentImageIndex(prevIndex => (prevIndex + 1) % allImages.length);
+    setCurrentImageIndex((currentImageIndex + 1) % allImages.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex(prevIndex => (prevIndex - 1 + allImages.length) % allImages.length);
+    setCurrentImageIndex((currentImageIndex - 1 + allImages.length) % allImages.length);
   };
 
   const user = useUserStore(state => state.user);
@@ -75,17 +94,43 @@ export default function ActivityInfo({ params }: { params: { id: string } }) {
     }
   };
 
+  const handleCopy = () => {
+    navigator.clipboard.writeText(window.location.href);
+    addToast({ message: '체험이 복사되었습니다.', type: 'success' });
+  };
+
   return (
     <>
       <div className={S.activityInfo}>
         <div className={S.categoryAndTitleContainer}>
-          <div>
+          <div className={S.categoryAndTitle}>
             <div className={S.category}>{activity?.category}</div>
-            <div className={S.title}>{activity?.title}</div>
+            <div className={S.title}>
+              {activity?.title}
+              <div className={S.copyIcon} onClick={handleCopy}>
+                <Image src={copy} width={16} height={16} alt="복사" />
+              </div>
+              {!hasAvailableDates && <span className={S.noDateWarning}>예약 가능한 날짜가 없습니다.</span>}
+            </div>
           </div>
 
-          {/* isCreator 조건 확인 */}
-          {isCreator && (
+          <div className={S.ratingAndAddressContainer}>
+            <div className={S.ratingContainer}>
+              <Image src={star} alt="" width={16} height={16} />
+
+              <div className={S.rating}>
+                {activity?.rating} ({activity?.reviewCount})
+              </div>
+            </div>
+
+            <div className={S.locationContainer}>
+              <Image src={location} alt="" width={18} height={18} />
+              <div className={S.address}>{activity?.address}</div>
+            </div>
+          </div>
+        </div>
+        {isCreator && (
+          <div className={S.dropdownWrapper}>
             <Dropdown
               type="kebab"
               data={dropdownList}
@@ -93,23 +138,8 @@ export default function ActivityInfo({ params }: { params: { id: string } }) {
               toggleDropdown={toggleDropdown}
               isDropdownToggle={isDropdownToggle}
             />
-          )}
-        </div>
-
-        <div className={S.ratingAndAddressContainer}>
-          <div className={S.ratingContainer}>
-            <Image src={star} alt="" width={16} height={16} />
-
-            <div className={S.rating}>
-              {activity?.rating} ({activity?.reviewCount})
-            </div>
           </div>
-
-          <div className={S.locationContainer}>
-            <Image src={location} alt="" width={18} height={18} />
-            <div className={S.address}>{activity?.address}</div>
-          </div>
-        </div>
+        )}
       </div>
 
       <div className={S.imageContainer}>
@@ -164,7 +194,9 @@ export default function ActivityInfo({ params }: { params: { id: string } }) {
             <hr className={S.hr} />
           </div>
         </div>
-        {!isCreator && <ResponsiveReservation activityId={activityId} price={activity?.price || 0} />}
+        {!isCreator && hasAvailableDates && (
+          <ResponsiveReservation activityId={activityId} price={activity?.price || 0} />
+        )}
       </div>
       <Alert
         isOpen={isAlertOpen}

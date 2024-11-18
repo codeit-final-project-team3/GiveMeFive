@@ -16,7 +16,7 @@ export function useURLManager(router: AppRouterInstance, pathname: string, searc
       }
     });
 
-    router.push(`${pathname}?${current.toString()}`, { scroll: options.scroll });
+    router.push(`${pathname}?${current.toString()}`, options);
   };
 
   return { updateURL };

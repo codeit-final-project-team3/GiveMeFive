@@ -109,9 +109,7 @@ function MyExperienceManagementList() {
         <div
           key={activity.id}
           className={S.cardItem}
-          style={{
-            animationDelay: `${index * 100}ms`,
-          }}
+          style={{ animationDelay: `${index * 100}ms`, zIndex: activities.length - index }}
         >
           <MyExperienceManagementCard experience={activity} />
         </div>

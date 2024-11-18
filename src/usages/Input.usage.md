@@ -81,7 +81,8 @@ export default function Home() {
   // handleSubmit: 각 입력 필드들과 연동하여 submit 이벤트를 가능하게 하는 메서드입니다.
   // reset: 개별 또는 입력 필드 전체를 초기화, 또는 특정값으로 변경할 수 있는 메서드입니다.
   // getValues: 전체, 복수, 개별 입력 필드의 값을 가져올 수 있는 메서드입니다.
-  const { errors, register, handleSubmit, reset, getValues } = useValidForm({ validationConfig: config });
+  // isValid: 현재 입력값들의 유효성 검사 통과 여부를 boolean 값으로 반환합니다.
+  const { errors, register, handleSubmit, reset, getValues, isValid } = useValidForm({ validationConfig: config });
 
   const handleFormSubmit = async (formData: FieldValues) => {
     if (formData.validTest && formData.validTestConfirmation) {

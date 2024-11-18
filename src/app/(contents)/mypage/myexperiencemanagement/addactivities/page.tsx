@@ -2,7 +2,6 @@
 import AddActivitiesForm from '../../../../components/addActivities/addActivitiesForm/AddActivitiesForm';
 import React from 'react';
 import SideMenu from '../../../../components/mypage/SideMenu';
-import Footer from '../../../../components/@shared/footer/Footer';
 import S from './AddActivities.module.scss';
 
 function AddActivities() {

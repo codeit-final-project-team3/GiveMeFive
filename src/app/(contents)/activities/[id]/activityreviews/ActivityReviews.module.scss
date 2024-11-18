@@ -23,32 +23,27 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 790px;
-  // margin-top: 30px;
+  width: 100%;
+
+  &.withCalendarWidth {
+    max-width: 790px;
+    width: calc(100% - 384px);
+  }
 
   &.fullWidth {
-    max-width: 100%;
+    width: 100%;
+    max-width: none;
   }
 
   @include tablet {
-    max-width: 429px;
-    // margin-top: 30px;
-
-    &.fullWidth {
-      max-width: 100%;
-    }
+    width: 100%;
+    max-width: none;
   }
 
   @include mobile {
+    width: 100%;
+    max-width: none;
     margin: 0;
-
-    &.fullWidth {
-      max-width: 100%;
-    }
-  }
-
-  &.withCalendar {
-    margin-top: 30px !important;
   }
 }
 
@@ -143,7 +138,10 @@
 }
 
 .fullWidth {
-  width: 100% !important;
+  width: 100%;
+  &:not(.withCalendarWidth) {
+    max-width: 790px;
+  }
 }
 
 .noReviewContainer {
@@ -177,4 +175,22 @@
 .review {
   display: flex;
   gap: 16px;
+}
+
+.withCalendarWidth {
+  width: calc(100% - 384px); // 캘린더의 너비를 고려한 값
+}
+
+.activityReviews {
+  width: 100%;
+  max-width: 790px;
+
+  &.withCalendarWidth {
+    max-width: none;
+    width: calc(100% - var(--calendar-width));
+  }
+
+  &.fullWidth:not(.withCalendarWidth) {
+    max-width: 790px;
+  }
 }

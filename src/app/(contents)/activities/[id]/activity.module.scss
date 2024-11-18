@@ -5,6 +5,14 @@
   flex-direction: column;
   max-width: 1200px;
   margin: 78px auto 140px;
+  position: relative;
+
+  &.noCalendar {
+    // '>' 기호는 직계 자식 선택자이고, 중첩된 모든 div가 아닌, 바로 아래 단계의 div만 선택함.
+    > div {
+      max-width: 100%;
+    }
+  }
 
   @include tablet {
     margin: 24px 24px 60px;

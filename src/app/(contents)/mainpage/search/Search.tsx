@@ -39,7 +39,7 @@ export default function Search() {
     if (!trimmedTitle) {
       return;
     }
-    router.push(`?${getQueryString()}`);
+    router.push(`?${getQueryString()}`, { scroll: false });
   };
 
   return (

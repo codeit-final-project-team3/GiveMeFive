@@ -14,7 +14,7 @@ export const useValidForm = ({ validationConfig, mode = 'onChange' }: useValidFo
     handleSubmit,
     setValue,
     getValues,
-    formState: { errors },
+    formState: { errors, isValid },
     reset,
   } = useForm({ mode });
 
@@ -54,5 +54,6 @@ export const useValidForm = ({ validationConfig, mode = 'onChange' }: useValidFo
     getValues,
     reset,
     setValue,
+    isValid,
   };
 };
