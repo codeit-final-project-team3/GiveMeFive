@@ -4,14 +4,24 @@ import DaumPostcodeEmbed, { Address } from 'react-daum-postcode';
 import Input from '../../@shared/input/Input';
 import Modal from '../../@shared/modal/Modal';
 import S from './DaumAddress.module.scss';
+import {
+  FieldError,
+  FieldErrorsImpl,
+  Merge,
+  UseFormRegisterReturn,
+  UseFormSetValue,
+  FieldValues,
+  UseFormGetValues,
+} from 'react-hook-form';
 
 interface DaumAddressProps {
-  errors: any;
-  register: any;
-  setValue: any;
-  getValues: any;
+  error?: FieldError | Merge<FieldError, FieldErrorsImpl>;
+  message?: string | FieldError | Merge<FieldError, FieldErrorsImpl>;
+  register: UseFormRegisterReturn;
+  setValue: UseFormSetValue<FieldValues>;
+  getValues: UseFormGetValues<FieldValues>;
 }
-const DaumAddress = ({ errors, register, setValue, getValues }: DaumAddressProps) => {
+const DaumAddress = ({ error, message, register, setValue, getValues }: DaumAddressProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const handleComplete = (data: Address) => {
     let fullAddress = data.address;
@@ -40,9 +50,9 @@ const DaumAddress = ({ errors, register, setValue, getValues }: DaumAddressProps
         htmlFor="address"
         placeholder="주소를 검색해주세요"
         onClick={() => setIsVisible(true)}
-        error={errors.address}
-        register={register.address}
-        message={errors.address?.message}
+        error={error}
+        register={register}
+        message={message}
         value={getValues('adress')}
       />
     </div>

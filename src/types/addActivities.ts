@@ -12,5 +12,9 @@ export interface SubmitActivitiesParams {
   address: string;
   schedules: Schedule[];
   bannerImageUrl: string;
-  subImageUrls: string[];
+  subImageUrls: File[] | string[];
+  subImageIdsToRemove?: string[];
+  subImageUrlsToAdd?: File[] | string[];
+  scheduleIdsToRemove?: string[];
+  schedulesToAdd?: Schedule[];
 }

@@ -20,6 +20,28 @@ import SubImageInput from '../subImageInput/SubImageInput';
 import S from './AddActivitiesForm.module.scss';
 import { GetActivitiesDetailResponse } from './../../../../fetches/getActivitiesDetail';
 import { editActivities } from '@/fetches/editActivities';
+import { AxiosError } from 'axios';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+interface Schedule {
+  startTime: string;
+  endTime: string;
+  date: string;
+}
+
+interface FormData extends FieldValues {
+  title: string;
+  category: string;
+  description: string;
+  price: string;
+  address: string;
+  bannerImageUrl: File;
+  schedules: Schedule[];
+  subImageUrls: File[];
+  subImageIdsToRemove?: string[];
+  subImageUrlsToAdd?: File[];
+  scheduleIdsToRemove?: string[];
+  schedulesToAdd?: Schedule[];
+}
 
 interface AddActivitiesFormProps {
   defaultData?: GetActivitiesDetailResponse;
@@ -77,7 +99,7 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
       required: '최소 1개 이상의 배너 이미지가 필요합니다.',
     },
     subImageUrls: {
-      required: !isEditMode ? '최소 1개 이상의 소개 이미지가 필요합니다.' : false,
+      required: isEditMode ? '최소 1개 이상의 소개 이미지가 필요합니다.' : false,
     },
   };
   const { errors, register, handleSubmit, reset, getValues, setValue } = useValidForm({
@@ -85,21 +107,22 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
   });
   const router = useRouter();
 
-  const handleSubmitType = useCallback(
-    (formData: any) => {
+  const handleSubmitType: SubmitHandler<any> = useCallback(
+    (formData: FormData) => {
       if (activityId) {
         handleFormEditSubmit(formData);
       } else {
+        console.log(formData);
         handleFormSubmit(formData);
       }
     },
     [activityId],
   );
 
-  const handleFormSubmit = async (formData: any) => {
+  const handleFormSubmit = async (formData: FormData) => {
     if (loading) return;
     setLoading(true);
-    let bannerUrl = defaultData?.bannerImageUrl;
+    let bannerUrl = defaultData?.bannerImageUrl || '';
     if (formData.bannerImageUrl instanceof File) {
       bannerUrl = await createImageUrl(formData.bannerImageUrl);
     }
@@ -114,30 +137,36 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
       await postActivities(typedData);
       router.replace('/mypage/myexperiencemanagement');
       addToast({ type: 'success', message: '체험 등록 성공' });
-    } catch (error: any) {
-      if (error.response) {
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
         // 서버에서 보낸 응답이 있는 경우
-        console.error('Response data:', error.response.data); // 서버가 반환한 에러 메시지
-        console.error('Response status:', error.response.status); // 상태 코드
-      } else if (error.request) {
+        console.error('Response data:', axiosError.response.data); // 서버가 반환한 에러 메시지
+        console.error('Response status:', axiosError.response.status); // 상태 코드
+      } else if (axiosError.request) {
         // 요청이 전송되었지만 응답이 수신되지 않은 경우
-        console.error('Request data:', error.request);
+        console.error('Request data:', axiosError.request);
       } else {
         // 요청을 설정하는 동안 문제가 발생한 경우
-        console.error('Error message:', error.message);
+        console.error('Error message:', axiosError.message);
       }
     } finally {
       setLoading(false);
     }
   };
 
-  const handleFormEditSubmit = async (formData: any) => {
+  const handleFormEditSubmit = async (formData: FormData) => {
+    console.log(formData);
     if (!activityId || loading) return;
     setIsEditMode(true);
     setLoading(true);
-    let bannerUrl = defaultData?.bannerImageUrl;
+    if (!formData) return;
+    console.log(formData.bannerImageUrl, '배너이미지 콘솔로그');
+    let bannerUrl = '';
     if (formData.bannerImageUrl instanceof File) {
       bannerUrl = await createImageUrl(formData.bannerImageUrl);
+    } else {
+      bannerUrl = formData.bannerImageUrl;
     }
 
     const typedData: SubmitActivitiesParams = {
@@ -156,17 +185,18 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
       await editActivities(typedData, activityId);
       router.replace('/mypage/myexperiencemanagement');
       addToast({ type: 'success', message: '체험 수정 성공' });
-    } catch (error: any) {
-      if (error.response) {
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
         // 서버에서 보낸 응답이 있는 경우
-        console.error('Response data:', error.response.data); // 서버가 반환한 에러 메시지
-        console.error('Response status:', error.response.status); // 상태 코드
-      } else if (error.request) {
+        console.error('Response data:', axiosError.response.data); // 서버가 반환한 에러 메시지
+        console.error('Response status:', axiosError.response.status); // 상태 코드
+      } else if (axiosError.request) {
         // 요청이 전송되었지만 응답이 수신되지 않은 경우
-        console.error('Request data:', error.request);
+        console.error('Request data:', axiosError.request);
       } else {
         // 요청을 설정하는 동안 문제가 발생한 경우
-        console.error('Error message:', error.message);
+        console.error('Error message:', axiosError.message);
       }
     } finally {
       setLoading(false);
@@ -175,6 +205,7 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
 
   useEffect(() => {
     if (defaultData) {
+      console.log(defaultData);
       reset({
         title: defaultData.title,
         category: defaultData.category,
@@ -208,7 +239,6 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
             borderRadius="radius4"
             className={S.submitButton}
             type="submit"
-            onClick={activityId ? handleFormEditSubmit : handleFormSubmit}
           >
             {loading ? '처리 중...' : activityId ? '수정하기' : '등록하기'}
           </Button>
@@ -240,7 +270,13 @@ export default function AddActivitiesForm({ defaultData, activityId }: AddActivi
           className={S.priceInput}
           onWheel={event => (event.target as HTMLElement).blur()}
         />
-        <DaumAddress errors={errors} register={register} setValue={setValue} getValues={getValues} />
+        <DaumAddress
+          error={errors.address}
+          message={errors.address?.message}
+          register={register.address}
+          setValue={setValue}
+          getValues={getValues}
+        />
         <label className={S.dateTimeInputLabel} htmlFor="availableTime">
           예약 가능한 시간대
         </label>

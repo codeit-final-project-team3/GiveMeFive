@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
+import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormSetValue } from 'react-hook-form';
 import S from './BannerImageInput.module.scss';
 import plusIcon from '@/images/plus-icon.svg';
 import deleteButton from '@/images/delete-button.svg';
@@ -8,7 +8,7 @@ import deleteButton from '@/images/delete-button.svg';
 interface BannerImageInputProps {
   error?: FieldError | Merge<FieldError, FieldErrorsImpl>;
   message?: string | FieldError | Merge<FieldError, FieldErrorsImpl>;
-  setValue?: any;
+  setValue: UseFormSetValue<FieldValues>;
   defaultDataBannerImage?: string;
 }
 export default function BannerImageInput({ error, message, setValue, defaultDataBannerImage }: BannerImageInputProps) {

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { FieldError, FieldErrorsImpl, Merge } from 'react-hook-form';
+import { FieldError, FieldErrorsImpl, FieldValues, Merge, UseFormGetValues, UseFormSetValue } from 'react-hook-form';
 import { IconCalendar, IconClock } from '@tabler/icons-react';
 import { ActionIcon, rem } from '@mantine/core';
 import { DatePickerInput, TimeInput } from '@mantine/dates';
@@ -21,8 +21,8 @@ type DateTimeType = {
 };
 
 interface DateTimeInputProps {
-  setValue: any;
-  getValues: any;
+  setValue: UseFormSetValue<FieldValues>;
+  getValues: UseFormGetValues<FieldValues>;
   id?: string;
   error?: FieldError | Merge<FieldError, FieldErrorsImpl>;
   message?: string | FieldError | Merge<FieldError, FieldErrorsImpl>;
