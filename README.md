@@ -298,22 +298,22 @@
   <tr>
     <td style="text-align:center;"><a href="https://github.com/itscold96"><img width="40px" src="https://avatars.githubusercontent.com/u/98478661?v=4"/></a></td>
     <th>김민찬</th>
-    <th></th>
+    <td>스프린트 과정에서 4번째 맡는 팀장이고, 마지막 프로젝트인 만큼 협업 과정에 가장 많이 신경을 썼습니다. <br> '어떻게 하면 각자 만든 공용 컴포넌트를 쉽게 사용할 수 있을까?'를 고려해 <br> 공통 컴포넌트들을 usage 폴더에 사용법을 기재했으며, PR에도 서로를 격려하고, <br> 서로 알고 있는 내용을 공유하는 분위기를 조성하려 노력했습니다. <br> 팀원분들이 각자의 역할을 최선을 다해 수행해주셔서 좋은 결과를 얻을 수 있었습니다.</td>
   </tr>
   <tr>
     <td style="text-align:center;"><a href="https://github.com/KimDasom521"><img width="40px" src="https://avatars.githubusercontent.com/u/83847755?v=4"/></a></td>
     <th>김다솜</th>
-    <th></th>
+    <td></td>
   </tr>
   <tr>
     <td style="text-align:center;"><a href="https://github.com/ayoooyh"><img width="40px" src="https://avatars.githubusercontent.com/u/127219927?v=4"/></a></td>
     <th>신윤하</th>
-    <th></th>
+    <td></td>
   </tr>
   <tr>
      <td style="text-align:center;"><a href="https://github.com/MELATONIN99"><img width="40px" src="https://avatars.githubusercontent.com/u/140742210?v=4a"/></a></td>
     <th>염성진</th>
-    <th></th>
+    <td></td>
   </tr>
 </table>
 
