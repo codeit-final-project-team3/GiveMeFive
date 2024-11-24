@@ -313,7 +313,7 @@
   <tr>
      <td style="text-align:center;"><a href="https://github.com/MELATONIN99"><img width="40px" src="https://avatars.githubusercontent.com/u/140742210?v=4a"/></a></td>
     <th>염성진</th>
-    <td></td>
+    <td>PR의 코멘트와 팀미팅을 통해 알고 있는 정보는 공유하고 모르는 문제는 같이 해결하고자 하였습니다.<br> 그 덕분에 처음 만들어보는 기능들에 대한 어려움도 있었으나 문제없이 잘 마무리한 것 같아 만족스러운 프로젝트 경험이었습니다. </td>
   </tr>
 </table>
 
