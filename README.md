@@ -308,7 +308,7 @@
   <tr>
     <td style="text-align:center;"><a href="https://github.com/ayoooyh"><img width="40px" src="https://avatars.githubusercontent.com/u/127219927?v=4"/></a></td>
     <th>신윤하</th>
-    <td></td>
+    <td>협업의 중요성과 다양한 문제 해결 방식을 배운 시간이였습니다. 시간 관리와 우선순위 중요성도 깨달았고, 배운 기술을 적용해 익힐 수 있던 시간이였습니다. 앞으로 이런 경험들이 개발에 큰 도움이 될 것이라고 생각든 시간이였습니다.</td>
   </tr>
   <tr>
      <td style="text-align:center;"><a href="https://github.com/MELATONIN99"><img width="40px" src="https://avatars.githubusercontent.com/u/140742210?v=4a"/></a></td>
