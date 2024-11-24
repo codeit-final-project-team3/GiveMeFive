@@ -303,7 +303,7 @@
   <tr>
     <td style="text-align:center;"><a href="https://github.com/KimDasom521"><img width="40px" src="https://avatars.githubusercontent.com/u/83847755?v=4"/></a></td>
     <th>김다솜</th>
-    <td></td>
+    <td>Mantine 라이브러리처럼 전에 사용해보지 못한 기술 스택을 이용하면서 새로운 경험을 할 수 있었습니다. 팀원분들 6주동안 고생 많으셨습니다.</td>
   </tr>
   <tr>
     <td style="text-align:center;"><a href="https://github.com/ayoooyh"><img width="40px" src="https://avatars.githubusercontent.com/u/127219927?v=4"/></a></td>
